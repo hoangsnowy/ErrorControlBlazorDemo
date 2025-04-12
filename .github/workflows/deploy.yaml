@@ -29,4 +29,4 @@ jobs:
           branch: gh-pages
           folder: dist/wwwroot
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
