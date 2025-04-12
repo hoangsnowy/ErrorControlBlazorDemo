@@ -10,6 +10,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<ParityService>();
 builder.Services.AddScoped<CrcService>();
 builder.Services.AddScoped<ArqService>();
+builder.Services.AddScoped(sp => new HttpClient
+{
+  BaseAddress = new Uri("https://hoangsnowy.github.io/ErrorControlBlazorDemo/")
+});
 
 var app = builder.Build();
 

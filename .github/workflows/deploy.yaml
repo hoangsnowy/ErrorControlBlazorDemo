@@ -1,0 +1,37 @@
+name: Deploy Blazor WebAssembly to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: 🔨 Restore & Build
+        run: |
+          dotnet restore
+          dotnet build --configuration Release
+
+      - name: 📦 Publish Blazor WebAssembly
+        run: dotnet publish ErrorControlBlazorDemo/ErrorControlBlazorDemo.csproj -c Release -o docs
+
+      - name: 🧩 Add .nojekyll
+        run: echo "" > docs/.nojekyll
+
+      - name: 💾 Commit published files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Auto-publish Blazor WebAssembly to GitHub Pages" || echo "No changes to commit"
+          git push origin main
