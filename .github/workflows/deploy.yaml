@@ -1,16 +1,15 @@
-name: Deploy Blazor WebAssembly to GitHub Pages
+name: 🚀 Deploy Blazor WebAssembly to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch: 
-  
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  workflow_dispatch:
 
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
+      - name: 📥 Checkout source
         uses: actions/checkout@v3
 
       - name: ⚙️ Setup .NET
@@ -18,21 +17,16 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: 🔨 Restore & Build
-        run: |
-          dotnet restore
-          dotnet build --configuration Release
+      - name: 🔨 Publish project (with base path)
+        run: dotnet publish ErrorControlBlazorDemo.csproj -c Release -o dist /p:BaseHref="/ErrorControlBlazorDemo/"
 
-      - name: 📦 Publish Blazor WebAssembly
-        run: dotnet publish ErrorControlBlazorDemo/ErrorControlBlazorDemo.csproj -c Release -o docs
+      - name: 📁 Add .nojekyll
+        run: echo "" > dist/.nojekyll
 
-      - name: 🧩 Add .nojekyll
-        run: echo "" > docs/.nojekyll
-
-      - name: 🚀 Deploy to GitHub Pages (docs folder to gh-pages)
+      - name: 🚀 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages      # 👈 deploy ra nhánh riêng
-          folder: docs
+          branch: gh-pages
+          folder: dist/wwwroot
           clean: true
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
