@@ -22,11 +22,11 @@ jobs:
           dotnet restore
           dotnet build --configuration Release
 
-      - name: 🔧 Update base href
-        run: sed -i 's|<base href="/"|<base href="/ErrorControlBlazorDemo/"|g' dist/wwwroot/index.html
-
       - name: 🔨 Publish project (with base path)
         run: dotnet publish ErrorControlBlazorDemo/ErrorControlBlazorDemo.csproj -c Release -o dist /p:BaseHref="/ErrorControlBlazorDemo/"
+
+      - name: 🔧 Update base href
+        run: sed -i 's|<base href="/"|<base href="/ErrorControlBlazorDemo/"|g' dist/wwwroot/index.html
 
       - name: 📁 Add .nojekyll
         run: echo "" > dist/.nojekyll
