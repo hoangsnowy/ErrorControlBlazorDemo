@@ -28,3 +28,4 @@ wwwroot/*.bundle*
 *.DS_Store
 *.swp
 *.bak
+/dist
