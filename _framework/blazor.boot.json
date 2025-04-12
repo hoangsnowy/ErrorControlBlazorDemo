@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ErrorControlBlazorDemo",
   "resources": {
-    "hash": "sha256-lLlTUc49kJjOBn0SgpwnaJWBvzyc0dSseqTO7S8g1gA=",
+    "hash": "sha256-4fM4sR9jN0z5d2+Cv9jsEGGdPCzS/NVDJ8P+mFdXaB4=",
     "jsModuleNative": {
       "dotnet.native.8.0.15.l5bze06whq.js": "sha256-ftpNqtARtVNE8ku5eB/jXoklb41UQ+EutUHfwmbNTBY="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "ErrorControlBlazorDemo.wasm": "sha256-uDv+5t/Jju8ygC282MncVJcIKuudx9BnsCV//J2nhTI=",
+      "ErrorControlBlazorDemo.wasm": "sha256-uL74C6tSsypt1g/lG3ZgbpCFUuyglo/t/y/ZhEEFXFU=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-syem5jV2YCjzqQxPq4F8+epAhgw1FvDrWdReWOy63JU=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-bfNAl/j/8mLDC2zCSPHCbE4K8QarsuIMT8kvBfsQjxY=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-Ws5szf6fWPAXna+XyWsAhavx+WDFcA/91DQ7iPRPCMs=",
