@@ -34,4 +34,4 @@ jobs:
           branch: gh-pages      # 👈 deploy ra nhánh riêng
           folder: docs
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
