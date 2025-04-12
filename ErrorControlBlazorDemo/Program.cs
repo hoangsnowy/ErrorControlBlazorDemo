@@ -1,32 +1,16 @@
-
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using ErrorControlBlazorDemo;
 using ErrorControlBlazorDemo.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
 builder.Services.AddScoped<ParityService>();
 builder.Services.AddScoped<CrcService>();
 builder.Services.AddScoped<ArqService>();
-builder.Services.AddScoped(sp => new HttpClient
-{
-  BaseAddress = new Uri("https://hoangsnowy.github.io/ErrorControlBlazorDemo/")
-});
 
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAntiforgery();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
-
-app.Run();
+await builder.Build().RunAsync();

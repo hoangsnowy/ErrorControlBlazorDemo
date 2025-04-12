@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlBlazorDemo", "ErrorControlBlazorDemo\ErrorControlBlazorDemo.csproj", "{851B8199-A71C-2E41-6B9F-4B15911A0553}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlBlazorDemo", "ErrorControlBlazorDemo\ErrorControlBlazorDemo.csproj", "{735D7686-7438-64D0-3B5B-1BF709EFF3BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{851B8199-A71C-2E41-6B9F-4B15911A0553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{851B8199-A71C-2E41-6B9F-4B15911A0553}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{851B8199-A71C-2E41-6B9F-4B15911A0553}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{851B8199-A71C-2E41-6B9F-4B15911A0553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735D7686-7438-64D0-3B5B-1BF709EFF3BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735D7686-7438-64D0-3B5B-1BF709EFF3BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735D7686-7438-64D0-3B5B-1BF709EFF3BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735D7686-7438-64D0-3B5B-1BF709EFF3BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BFFD2E99-FC0A-4BE3-8554-EE68776DD31C}
+		SolutionGuid = {9747C6B0-BEC5-4136-A703-E29AC7E925E9}
 	EndGlobalSection
 EndGlobal

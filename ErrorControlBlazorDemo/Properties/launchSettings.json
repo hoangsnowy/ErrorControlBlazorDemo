@@ -1,12 +1,12 @@
 {
   "profiles": {
-    "ErrorControlBlazorDemo": {
+    "ErrorControlBlazorDemo_Clean": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:64922;http://localhost:64923"
+      "applicationUrl": "https://localhost:58516;http://localhost:58517"
     }
   }
 }
