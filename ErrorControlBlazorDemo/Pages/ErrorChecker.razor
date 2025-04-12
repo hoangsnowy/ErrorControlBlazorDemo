@@ -1,0 +1,134 @@
+@page "/kiem-tra-loi"
+@inject ParityService Parity
+@inject CrcService Crc
+@inject ArqService Arq
+
+<h3 class="text-center mt-4 mb-4 text-primary">🧪 Kiểm tra lỗi truyền dữ liệu</h3>
+
+<div class="card shadow p-4 mx-auto" style="max-width: 800px;">
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Chọn thuật toán:</label>
+    <select class="form-select" @bind="SelectedAlgorithm">
+      <option value="parity">🟦 Parity</option>
+      <option value="crc">🟨 CRC</option>
+      <option value="arq">🟥 ARQ</option>
+    </select>
+  </div>
+
+  @if (SelectedAlgorithm == "parity")
+  {
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Chọn loại kiểm tra:</label>
+      <select class="form-select" @bind="ParityMode">
+        <option value="even">🔵 Một chiều - Chẵn</option>
+        <option value="odd">🔴 Một chiều - Lẻ</option>
+        <option value="matrix">🔲 Hai chiều (ma trận)</option>
+      </select>
+    </div>
+    @if (ParityMode == "matrix")
+    {
+      <label class="form-label fw-semibold">Nhập ma trận nhị phân (mỗi dòng cách nhau bằng Enter):</label>
+      <textarea class="form-control" rows="5" @bind="MatrixInput" placeholder="VD:\n1010\n1100\n1111\n0001"></textarea>
+    }
+    else
+    {
+      <label class="form-label fw-semibold">Chuỗi nhị phân:</label>
+      <input class="form-control" @bind="ChuoiInput" />
+    }
+  }
+
+  @if (SelectedAlgorithm == "crc")
+  {
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Chuỗi dữ liệu M:</label>
+      <input class="form-control" @bind="ChuoiInput" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Nhập G(x):</label>
+      <input class="form-control" @bind="Gx" placeholder="Ví dụ: 1101" />
+    </div>
+  }
+
+  @if (SelectedAlgorithm == "arq")
+  {
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Chọn loại ARQ:</label>
+      <select class="form-select" @bind="ArqMode">
+        <option value="saw">🔁 Stop-and-Wait</option>
+        <option value="gbn">⏪ Go-Back-N</option>
+        <option value="sr">🎯 Selective Repeat</option>
+      </select>
+    </div>
+    <label class="form-label fw-semibold">Chuỗi dữ liệu:</label>
+    <input class="form-control" @bind="ChuoiInput" />
+  }
+
+  <button class="btn btn-success mt-3 w-100 fw-bold" @onclick="XuLy">▶ Kiểm tra</button>
+</div>
+
+@if (KetQua.Any())
+{
+  <div class="mt-4 mx-auto" style="max-width: 800px;">
+    <table class="table table-bordered table-striped">
+      <thead class="table-info">
+        <tr><th>Bước</th><th>Chi tiết</th></tr>
+      </thead>
+      <tbody>
+        @foreach (var (dong, i) in KetQua.Select((v, i) => (v, i + 1)))
+        {
+          <tr><td>@i</td><td>@dong</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+
+@code {
+  private string SelectedAlgorithm = "parity";
+  private string ParityMode = "even";
+  private string ArqMode = "saw";
+  private string ChuoiInput = "";
+  private string Gx = "";
+  private string MatrixInput = "";
+  private List<string> KetQua = new();
+
+  private void XuLy()
+  {
+    KetQua.Clear();
+    if (SelectedAlgorithm == "parity")
+    {
+      if (ParityMode == "matrix")
+      {
+        var matrix = MatrixInput.Split('\n', StringSplitOptions.RemoveEmptyEntries)
+                                .Select(line => line.Trim()).ToArray();
+        KetQua = Parity.KiemTraHaiChieu(matrix);
+      }
+      else
+      {
+        bool odd = ParityMode == "odd";
+        var (hopLe, log) = Parity.KiemTraMotChieu(ChuoiInput, odd);
+        KetQua.AddRange(log);
+        KetQua.Add(hopLe ? "✅ Dữ liệu hợp lệ." : "❌ Dữ liệu lỗi.");
+      }
+    }
+    else if (SelectedAlgorithm == "crc")
+    {
+      if (!string.IsNullOrWhiteSpace(ChuoiInput) && !string.IsNullOrWhiteSpace(Gx))
+      {
+        var (_, log) = Crc.TinhCRC(ChuoiInput, Gx);
+        KetQua.AddRange(log);
+      }
+    }
+    else if (SelectedAlgorithm == "arq")
+    {
+      var frames = ChuoiInput.Chunk(4).Select(c => new string(c)).ToArray();
+      KetQua = ArqMode switch
+      {
+        "saw" => Arq.MoPhongStopAndWait(frames, 0.3),
+        "gbn" => Arq.MoPhongGoBackN(frames, 4, 0.3),
+        "sr" => Arq.MoPhongSelectiveRepeat(frames, 4, 0.3),
+        _ => new List<string> { "❌ Không hỗ trợ thuật toán ARQ này." }
+      };
+    }
+  }
+}
