@@ -18,7 +18,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: 🔨 Publish project (with base path)
-        run: dotnet publish ErrorControlBlazorDemo.csproj -c Release -o dist /p:BaseHref="/ErrorControlBlazorDemo/"
+        run: dotnet publish ErrorControlBlazorDemo/ErrorControlBlazorDemo.csproj -c Release -o dist /p:BaseHref="/ErrorControlBlazorDemo/"
 
       - name: 📁 Add .nojekyll
         run: echo "" > dist/.nojekyll
