@@ -28,10 +28,10 @@ jobs:
       - name: 🧩 Add .nojekyll
         run: echo "" > docs/.nojekyll
 
-      - name: 🚀 Deploy to GitHub Pages (docs folder on main)
+      - name: 🚀 Deploy to GitHub Pages (docs folder to gh-pages)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main
+          branch: gh-pages      # 👈 deploy ra nhánh riêng
           folder: docs
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
