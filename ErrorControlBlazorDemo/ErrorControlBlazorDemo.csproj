@@ -6,5 +6,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+  <Target Name="MoveWwwRootContent" AfterTargets="Publish">
+    <ItemGroup>
+      <AllFiles Include="$(PublishDir)wwwroot\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AllFiles)" DestinationFolder="$(PublishDir)%(RecursiveDir)" />
+  </Target>
 </Project>

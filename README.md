@@ -1,39 +1,39 @@
-# 🔧 Error Control Blazor Demo
+# 🔧 Dự án Demo Kiểm Soát Lỗi trong Mạng Máy Tính (Blazor WebAssembly)
 
-This is a Blazor WebAssembly demo project showcasing **Error Control Algorithms** in computer networks.  
-It is designed for educational purposes and demonstrates how different error detection and correction mechanisms work visually and interactively.
-
----
-
-## 🌐 Live Demo
-
-👉 [View the App on GitHub Pages](https://hoangsnowy.github.io/ErrorControlBlazorDemo/)
+Đây là ứng dụng demo mô phỏng các **thuật toán kiểm soát lỗi** thường gặp trong mạng máy tính.  
+Dự án được xây dựng bằng **C#**, **.NET 8** và **Blazor WebAssembly** — chạy trực tiếp trên trình duyệt, không cần cài đặt.
 
 ---
 
-## 🚀 Features
+## 🌐 Truy cập ứng dụng
 
-- ✅ **Parity Check** (even/odd)
-- ✅ **CRC (Cyclic Redundancy Check)** with custom generator polynomial
-- ✅ **ARQ Protocols**:
-  - Stop-and-Wait ARQ
-  - Go-Back-N ARQ
-  - Selective Repeat ARQ
-- ✅ Step-by-step visualization of each algorithm
-- ✅ Implemented using **C#**, **.NET 8**, and **Blazor WebAssembly**
+👉 [Xem demo tại đây](https://hoangsnowy.github.io/ErrorControlBlazorDemo/)
 
 ---
 
-## 📦 Tech Stack
+## ✅ Các tính năng
+
+- 🧮 **Kiểm tra chẵn lẻ (Parity Check)**: cả Even và Odd
+- 🔁 **CRC (Cyclic Redundancy Check)**: cho phép nhập đa thức G(x) tùy ý
+- 🔄 **Giao thức ARQ**:
+  - Stop-and-Wait
+  - Go-Back-N
+  - Selective Repeat
+- 👁️ Hiển thị từng bước xử lý của từng thuật toán để dễ học
+- 🧠 Giao diện trực quan, dễ sử dụng cho người mới học
+
+---
+
+## ⚙️ Công nghệ sử dụng
 
 - Blazor WebAssembly (.NET 8)
-- C#
-- GitHub Actions for CI/CD
-- Hosted on GitHub Pages
+- C# / Razor
+- GitHub Actions CI/CD
+- GitHub Pages để triển khai online
 
 ---
 
-## 🛠️ Run Locally
+## 🛠️ Chạy thử trên máy tính cá nhân
 
 ```bash
 git clone https://github.com/hoangsnowy/ErrorControlBlazorDemo.git
