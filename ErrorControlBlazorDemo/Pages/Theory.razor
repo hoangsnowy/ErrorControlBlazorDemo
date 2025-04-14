@@ -1,0 +1,80 @@
+﻿@page "/ly-thuyet"
+
+<h1 class="text-primary mb-4">Lý thuyết: Kiểm soát lỗi trong mạng máy tính</h1>
+
+<h3>1. Parity Check</h3>
+<p><strong>Kiểm tra một chiều:</strong> Bit parity được tính dựa trên tổng số bit 1 để xác định lỗi (Even hoặc Odd). Chỉ phát hiện được lỗi lẻ số bit.</p>
+<p><strong>Kiểm tra hai chiều (LRC):</strong> Áp dụng kiểm tra parity theo cả hàng và cột trong khối dữ liệu. Có thể khoanh vùng lỗi, tuy nhiên không thể sửa được lỗi.</p>
+
+<h3>2. CRC (Cyclic Redundancy Check)</h3>
+<p>Dùng đa thức sinh G(x) chia Modulo-2 chuỗi dữ liệu để tạo mã CRC. CRC có thể phát hiện nhiều lỗi hơn Parity. Phổ biến trong Ethernet, USB, 4G, v.v.</p>
+<p><strong>Quy trình:</strong></p>
+<ul>
+  <li>Thêm n bit 0 vào cuối chuỗi dữ liệu (n là bậc của đa thức sinh).</li>
+  <li>Chia chuỗi mới cho G(x) theo modulo-2 để lấy phần dư.</li>
+  <li>Gửi phần dư (CRC) cùng với dữ liệu gốc.</li>
+</ul>
+
+<h3>3. ARQ (Automatic Repeat reQuest)</h3>
+<p>ARQ không chỉ phát hiện mà còn xử lý lỗi bằng cách yêu cầu gửi lại khung lỗi:</p>
+<ul>
+  <li><strong>Stop-and-Wait:</strong> Gửi 1 frame, chờ ACK. Timeout nếu mất ACK và gửi lại. Đơn giản nhưng hiệu suất thấp.</li>
+  <li><strong>Go-Back-N:</strong> Gửi nhiều frame liên tục. Nếu phát hiện lỗi ở frame k, gửi lại từ frame k trở đi. Sử dụng cửa sổ trượt.</li>
+  <li><strong>Selective Repeat:</strong> Chỉ gửi lại chính xác frame bị lỗi. Phức tạp hơn nhưng tiết kiệm băng thông.</li>
+</ul>
+
+<h3>4. Đánh giá hiệu năng</h3>
+<table class="table table-bordered">
+  <thead class="table-light">
+    <tr>
+      <th>Tiêu chí</th>
+      <th>Parity</th>
+      <th>CRC</th>
+      <th>Stop-and-Wait</th>
+      <th>Go-Back-N</th>
+      <th>Selective Repeat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Phát hiện lỗi</td>
+      <td>Thấp</td>
+      <td>Cao</td>
+      <td>TB</td>
+      <td>Cao</td>
+      <td>Cao</td>
+    </tr>
+    <tr>
+      <td>Sửa lỗi</td>
+      <td>Không</td>
+      <td>Không</td>
+      <td>Có</td>
+      <td>Có</td>
+      <td>Có</td>
+    </tr>
+    <tr>
+      <td>Độ trễ</td>
+      <td>Thấp</td>
+      <td>Thấp</td>
+      <td>Cao</td>
+      <td>TB</td>
+      <td>TB</td>
+    </tr>
+    <tr>
+      <td>Phức tạp xử lý</td>
+      <td>Thấp</td>
+      <td>TB</td>
+      <td>Thấp</td>
+      <td>TB</td>
+      <td>Cao</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>5. Các khái niệm bổ sung</h3>
+<ul>
+  <li><strong>BER (Bit Error Ratio):</strong> Tỷ lệ bit lỗi trên tổng số bit truyền.</li>
+  <li><strong>Throughput:</strong> Dữ liệu thực truyền thành công trong một đơn vị thời gian.</li>
+  <li><strong>Latency:</strong> Thời gian từ lúc gửi đến lúc nhận dữ liệu.</li>
+  <li><strong>Efficiency:</strong> Tỷ lệ dữ liệu hữu ích / tổng dữ liệu truyền.</li>
+</ul>

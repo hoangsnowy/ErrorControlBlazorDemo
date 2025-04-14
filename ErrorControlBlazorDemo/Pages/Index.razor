@@ -1,12 +1,56 @@
 @page "/"
 
-<h3>🔍 Ứng dụng kiểm soát lỗi truyền dữ liệu</h3>
+<PageTitle>Trang chính - Error Control Simulator</PageTitle>
 
-<p>Ứng dụng hỗ trợ 3 thuật toán kiểm soát lỗi thường dùng trong mạng máy tính:</p>
-<ul>
-  <li>✔ Kiểm tra chẵn lẻ (Parity Check)</li>
-  <li>✔ CRC (Cyclic Redundancy Check)</li>
-  <li>✔ Stop-and-Wait ARQ</li>
-</ul>
+<div class="container py-5">
+  <h1 class="display-5 text-primary mb-4">🎯 Trình mô phỏng kiểm soát lỗi dữ liệu</h1>
 
-<p>👉 Nhấn "Kiểm tra lỗi" trong menu để thử nghiệm.</p>
+  <p class="lead">Ứng dụng mô phỏng trực quan các thuật toán kiểm soát lỗi thường dùng trong mạng máy tính như:</p>
+  <ul>
+    <li><strong>Parity Check:</strong> Chẵn lẻ một chiều và hai chiều (LRC)</li>
+    <li><strong>CRC:</strong> Kiểm tra dư thừa theo chu kỳ với đa thức sinh</li>
+    <li><strong>ARQ:</strong> Stop-and-Wait, Go-Back-N, Selective Repeat</li>
+  </ul>
+
+  <div class="alert alert-info mt-4">
+    💡 Xem thêm phần <strong>Lý thuyết</strong> trong thanh điều hướng để hiểu cơ chế các thuật toán.
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-6 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">🧮 Kiểm tra chẵn lẻ (Parity)</h5>
+          <p class="card-text">Tính bit chẵn lẻ, kiểm tra lỗi và mô phỏng bit lỗi một cách trực quan.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">🔗 CRC (Cyclic Redundancy Check)</h5>
+          <p class="card-text">Nhập dữ liệu nhị phân và đa thức sinh, xem quá trình tính toán CRC chi tiết.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">🔁 ARQ - Stop-and-Wait</h5>
+          <p class="card-text">Gửi từng frame, mô phỏng mất ACK và timeout, xem phản hồi khung truyền.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">📶 ARQ - Go-Back-N / Selective Repeat</h5>
+          <p class="card-text">So sánh hai thuật toán ARQ nâng cao: buffer, ACK, window size, lỗi khung.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
